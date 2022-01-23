@@ -9,10 +9,10 @@ namespace rig_watcher.console
 {
     class Api
     {
-        private string urlRoot;
-        private string orgId;
-        private string apiKey;
-        private string apiSecret;
+        private readonly string urlRoot;
+        private readonly string orgId;
+        private readonly string apiKey;
+        private readonly string apiSecret;
 
         public Api(string urlRoot, string orgId, string apiKey, string apiSecret)
         {
@@ -64,7 +64,7 @@ namespace rig_watcher.console
             foreach (var segment in segments) {
                 if (!first)
                 {
-                    sb.Append("\x00");
+                    sb.Append('\x00');
                 }
                 else
                 {
@@ -76,7 +76,6 @@ namespace rig_watcher.console
                     sb.Append(segment);
                 }
             }
-            //Console.WriteLine("["+sb.ToString()+"]");
             return sb.ToString();
         }
 

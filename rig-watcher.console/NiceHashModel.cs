@@ -36,9 +36,7 @@ namespace rig_watcher.console
 
     internal class RigActionRequest
     {
-        // public string GroupId {get;set;} = "";
         public string rigId {get;set;} = "";
-        // public string DeviceId {get;set;} = "";
         public string action {get;set;} = "";
     }
 

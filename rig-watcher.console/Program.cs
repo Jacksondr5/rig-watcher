@@ -55,12 +55,10 @@ namespace rig_watcher.console
                 if (rig.MinerStatus.Equals("OFFLINE"))
                 {
                     Console.WriteLine($"Rig {rig.Name} offline, can't do anything");
-                    continue;
                 }
                 else if (rig.MinerStatus.Equals("MINING"))
                 {
                     Console.WriteLine($"Rig {rig.Name} is mining");
-                    continue;
                 }
                 else if (rig.MinerStatus.Equals("STOPPED"))
                 {
@@ -125,29 +123,28 @@ namespace rig_watcher.console
                 }
                 else if (method == HttpMethod.Post)
                 {
-                    var requestId = Guid.NewGuid().ToString();
                     if (body == null)
                     {
-                        throw new Exception("body is null");
+                        throw new RigWatcherException("body is null");
                     }
                     if (time == null)
                     {
-                        throw new Exception("time is null");
+                        throw new RigWatcherException("time is null");
                     }
                     retVal = JsonConvert.DeserializeObject<T>(api.post(url, body, time, true));
                 }
                 else
                 {
-                    throw new Exception($"Unknown method: {method}");
+                    throw new RigWatcherException($"Unknown method: {method}");
                 }
             }
             catch (Exception e)
             {
-                throw new Exception($"Error while deserializing {targetObject} response", e);
+                throw new RigWatcherException($"Error while deserializing {targetObject} response", e);
             }
             if (retVal == null)
             {
-                throw new Exception($"{targetObject} response is null");
+                throw new RigWatcherException($"{targetObject} response is null");
             }
             return retVal;
         }
@@ -155,15 +152,15 @@ namespace rig_watcher.console
         {
             if (settings.OrganizationId == null)
             {
-                throw new Exception("OrganizationId is null");
+                throw new RigWatcherException("OrganizationId is null");
             }
             if (settings.ApiKeyCode == null)
             {
-                throw new Exception("ApiKeyCode is null");
+                throw new RigWatcherException("ApiKeyCode is null");
             }
             if (settings.ApiSecretKeyCode == null)
             {
-                throw new Exception("ApiSecretKeyCode is null");
+                throw new RigWatcherException("ApiSecretKeyCode is null");
             }
         }
     }
