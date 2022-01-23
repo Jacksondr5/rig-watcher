@@ -25,7 +25,7 @@ jobs:
         displayName: Build and Push Docker Image
         inputs:
           containerRegistry: "Docker Hub"
-          repository: jacksondr5/genshin-api
+          repository: jacksondr5/rig-watcher
           command: buildAndPush
           Dockerfile: Dockerfile
           tags: |
